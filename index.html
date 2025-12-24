@@ -26,15 +26,513 @@
                             accent: '#f97316', // Orange
                             light: '#eff6ff',
                         }
+                    },
+                    screens: {
+                        'xs': '475px', // Extra small devices
                     }
                 }
             }
         }
     </script>
     <style>
-    .hero-bg {
-        background-image: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-        background-size: cover;
+        .hero-bg {
+            background-image: linear-gradient(rgba(30, 58, 138, 0.95), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        /* Clip shape only for larger screens to save space on mobile */
+        @media (min-width: 768px) {
+            .clip-shape {
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            }
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .policy-scroll::-webkit-scrollbar {
+            width: 6px; /* Thinner scrollbar for mobile feel */
+        }
+        .policy-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .policy-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 smooth-scroll">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 md:h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <i class="fa-solid fa-angles-up text-brand-accent text-2xl md:text-3xl"></i>
+                        <span class="font-bold text-xl md:text-2xl text-brand-main tracking-tighter">พรรคก้าวกระโดด</span>
+                    </div>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-brand-accent transition font-medium">หน้าแรก</a>
+                    <a href="#candidate" class="text-gray-600 hover:text-brand-accent transition font-medium">แคนดิเดต</a>
+                    <a href="#policies" class="text-gray-600 hover:text-brand-accent transition font-medium">นโยบาย</a>
+                    <a href="#contact" class="bg-brand-accent text-white px-6 py-2 rounded-full hover:bg-orange-600 transition shadow-lg transform hover:-translate-y-0.5 text-sm lg:text-base">ร่วมเป็นอาสาสมัคร</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleMenu()" class="text-gray-600 hover:text-brand-main focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#home" onclick="toggleMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-accent hover:bg-gray-50">หน้าแรก</a>
+                <a href="#candidate" onclick="toggleMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-accent hover:bg-gray-50">แคนดิเดต</a>
+                <a href="#policies" onclick="toggleMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-accent hover:bg-gray-50">นโยบาย</a>
+                <a href="#contact" onclick="toggleMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-white bg-brand-accent text-center mt-4 shadow-md">ร่วมเป็นอาสาสมัคร</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-[100vh] md:min-h-screen flex items-center pt-20 md:pt-0 clip-shape relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-0">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-white space-y-4 md:space-y-6 text-center md:text-left z-10 order-2 md:order-1">
+                    <div class="inline-block bg-brand-accent px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider mb-2 animate-pulse">
+                        เลือกตั้ง 8 ก.พ. 2569
+                    </div>
+                    <h1 class="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-shadow">
+                        ไทย <span class="text-brand-accent block md:inline">ก้าวกระโดด</span>
+                        <span class="block text-2xl md:text-4xl lg:text-5xl mt-2 md:mt-4 font-semibold text-gray-200">สู่อนาคตที่เหนือกว่า</span>
+                    </h1>
+                    <p class="text-base md:text-xl lg:text-2xl font-light text-gray-200 max-w-lg mx-auto md:mx-0">
+                        ปลดล็อกศักยภาพประเทศไทย ด้วยวิสัยทัศน์ผู้นำรุ่นใหม่ กล้าคิด กล้าทำ เพื่อชีวิตที่ดีกว่า
+                    </p>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 md:p-6 mt-4 md:mt-8 border border-white/20 mx-auto md:mx-0 max-w-md md:max-w-full">
+                        <p class="text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-4 font-bold text-brand-accent">นับถอยหลังสู่วันเลือกตั้ง</p>
+                        <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                            <div>
+                                <span id="days" class="block text-2xl md:text-4xl font-bold">00</span>
+                                <span class="text-[10px] md:text-xs text-gray-300">วัน</span>
+                            </div>
+                            <div>
+                                <span id="hours" class="block text-2xl md:text-4xl font-bold">00</span>
+                                <span class="text-[10px] md:text-xs text-gray-300">ชม.</span>
+                            </div>
+                            <div>
+                                <span id="minutes" class="block text-2xl md:text-4xl font-bold">00</span>
+                                <span class="text-[10px] md:text-xs text-gray-300">นาที</span>
+                            </div>
+                            <div>
+                                <span id="seconds" class="block text-2xl md:text-4xl font-bold text-brand-accent">00</span>
+                                <span class="text-[10px] md:text-xs text-gray-300">วินาที</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center md:justify-start w-full sm:w-auto">
+                        <button onclick="document.getElementById('policies').scrollIntoView()" class="w-full sm:w-auto bg-brand-accent text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition shadow-lg flex items-center justify-center gap-2">
+                            ดูนโยบาย <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button class="w-full sm:w-auto bg-transparent border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-white hover:text-brand-main transition flex items-center justify-center">
+                            <i class="fa-solid fa-play mr-2"></i> วิดีโอแนะนำ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Candidate Image -->
+                <div class="relative flex justify-center md:justify-end mt-4 md:mt-0 order-1 md:order-2">
+                    <div class="absolute inset-0 bg-brand-accent rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
+                    <!-- Responsive Image Size -->
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden border-4 md:border-8 border-white/20 shadow-2xl mx-auto">
+                        <img src="https://lh3.googleusercontent.com/d/1wf0Qi19YaJ7GD9Lt3oP7wHfbVkXvD-AE" 
+                             alt="นายอลงกรณ์ นนทรีย์" 
+                             class="w-full h-full object-cover object-top hover:scale-105 transition duration-700"
+                             onerror="this.src='https://via.placeholder.com/500x500?text=Alongkorn+Nontree'; this.style.objectFit='contain';">
+                    </div>
+                    
+                    <!-- Floating Name Tag -->
+                    <div class="absolute bottom-0 md:bottom-10 left-1/2 md:left-0 transform -translate-x-1/2 md:translate-x-0 bg-white p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 md:gap-4 border-l-4 border-brand-accent min-w-[200px] md:min-w-[250px] whitespace-nowrap z-20">
+                        <div>
+                            <p class="text-xs md:text-sm text-gray-500 font-bold">แคนดิเดตนายกฯ</p>
+                            <h3 class="text-lg md:text-2xl font-bold text-brand-main">อลงกรณ์ นนทรีย์</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Candidate Profile Section -->
+    <section id="candidate" class="py-12 md:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-brand-accent font-bold tracking-wider uppercase text-xs md:text-sm mb-2">เกี่ยวกับผู้นำ</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">นายอลงกรณ์ นนทรีย์</h2>
+                <div class="w-16 md:w-24 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="space-y-4 md:space-y-6 order-2 md:order-1">
+                    <h3 class="text-xl md:text-2xl font-bold text-brand-main text-center md:text-left">"เปลี่ยนวิกฤต เป็นโอกาส สร้างชาติด้วยนวัตกรรม"</h3>
+                    <p class="text-gray-600 text-base md:text-lg leading-relaxed text-justify md:text-left">
+                        ด้วยประสบการณ์กว่า 20 ปี ในการบริหารองค์กรระดับประเทศ และความมุ่งมั่นที่จะเห็นประเทศไทยก้าวขึ้นเป็นผู้นำในเวทีโลก นายอลงกรณ์ นนทรีย์ พร้อมแล้วที่จะนำทัพ "พรรคก้าวกระโดด" สร้างการเปลี่ยนแปลงที่จับต้องได้
+                    </p>
+                    <ul class="space-y-3 md:space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-check text-brand-main text-sm md:text-base"></i>
+                            </div>
+                            <div class="ml-3 md:ml-4">
+                                <h4 class="text-base md:text-lg font-bold text-gray-900">วิสัยทัศน์ทางเศรษฐกิจ</h4>
+                                <p class="text-sm md:text-base text-gray-600">สร้างรายได้ใหม่จาก Tech Industry และ Creative Economy</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-check text-brand-main text-sm md:text-base"></i>
+                            </div>
+                            <div class="ml-3 md:ml-4">
+                                <h4 class="text-base md:text-lg font-bold text-gray-900">ความยุติธรรมเท่าเทียม</h4>
+                                <p class="text-sm md:text-base text-gray-600">ปฏิรูปกฎหมาย เอื้อต่อการทำมาหากินของคนตัวเล็ก</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 order-1 md:order-2">
+                    <h4 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-center border-b pb-4">ประวัติโดยย่อ</h4>
+                    <div class="space-y-3 md:space-y-4 text-sm md:text-base">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-700">การศึกษา</span>
+                            <span class="text-gray-600 text-right">ปริญญาเอก เศรษฐศาสตร์</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-700">ประสบการณ์</span>
+                            <span class="text-gray-600 text-right">CEO บริษัทเทคโนโลยี</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-700">อายุ</span>
+                            <span class="text-gray-600 text-right">48 ปี</span>
+                        </div>
+                        <div class="mt-6 md:mt-8 pt-4 border-t text-center">
+                            <p class="italic text-gray-500 text-xs md:text-sm">"ผมไม่ได้มาเล่นการเมือง แต่มาเพื่อแก้ปัญหา"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Section -->
+    <section id="policies" class="py-12 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-brand-accent font-bold tracking-wider uppercase text-xs md:text-sm mb-2">นโยบายหลัก</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">ยุทธศาสตร์ "ก้าวกระโดด"</h2>
+                <p class="mt-2 md:mt-4 text-lg md:text-xl text-gray-500">3 เสาหลักเพื่อยกระดับคุณภาพชีวิต</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20">
+                <!-- Policy 1 -->
+                <div class="group bg-gray-50 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:bg-brand-main hover:text-white hover:-translate-y-2 hover:shadow-xl">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-100 text-brand-main rounded-xl flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-6 group-hover:bg-white group-hover:text-brand-main transition-colors">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">เศรษฐกิจความเร็วสูง</h3>
+                    <p class="text-sm md:text-base text-gray-600 group-hover:text-blue-100 transition-colors">
+                        สร้างเขตเศรษฐกิจพิเศษดิจิทัลทั่วประเทศ สนับสนุน SME เข้าถึงแหล่งทุน
+                    </p>
+                </div>
+
+                <!-- Policy 2 -->
+                <div class="group bg-gray-50 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:bg-brand-accent hover:text-white hover:-translate-y-2 hover:shadow-xl">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-orange-100 text-brand-accent rounded-xl flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-6 group-hover:bg-white group-hover:text-brand-accent transition-colors">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">การศึกษาสั่งตัด</h3>
+                    <p class="text-sm md:text-base text-gray-600 group-hover:text-orange-100 transition-colors">
+                        เรียนฟรีมีอาชีพ หลักสูตรเลือกได้ตามความถนัด คูปองเรียนรู้ตลอดชีพ
+                    </p>
+                </div>
+
+                <!-- Policy 3 -->
+                <div class="group bg-gray-50 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:bg-green-600 hover:text-white hover:-translate-y-2 hover:shadow-xl">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-6 group-hover:bg-white group-hover:text-green-600 transition-colors">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">ไทยสีเขียว</h3>
+                    <p class="text-sm md:text-base text-gray-600 group-hover:text-green-100 transition-colors">
+                        เปลี่ยนขยะเป็นเงิน ลดค่าไฟด้วยโซลาร์เซลล์ เพิ่มพื้นที่สีเขียวในเมือง
+                    </p>
+                </div>
+            </div>
+
+            <!-- Full Policy Archive Section -->
+            <div class="bg-gray-50 rounded-3xl p-6 md:p-12 shadow-inner border border-gray-200">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-brand-accent"></i>
+                            คลังนโยบาย 360 องศา
+                        </h3>
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">ค้นหานโยบายแก้ปัญหาจริงกว่า 300+ รายการ</p>
+                    </div>
+                    <div class="w-full md:w-auto flex flex-col xs:flex-row gap-2">
+                        <div class="relative w-full xs:w-auto md:w-64">
+                            <input type="text" id="policySearch" placeholder="ค้นหา (เช่น หนี้, น้ำท่วม)" class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent text-sm">
+                            <i class="fa-solid fa-search absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+                        </div>
+                        <select id="policyFilter" class="w-full xs:w-auto px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white text-sm">
+                            <option value="all">ทุกหมวดหมู่</option>
+                            <!-- Generated by JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Scrollable Policy Container (Responsive Height) -->
+                <div class="bg-white rounded-xl border border-gray-200 h-[350px] md:h-[500px] overflow-y-auto policy-scroll p-2">
+                    <div id="policyList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 p-2 md:p-4">
+                        <!-- Javascript will populate policies here -->
+                    </div>
+                </div>
+                <div class="mt-4 text-center text-xs md:text-sm text-gray-500">
+                    แสดงผล <span id="policyCount">0</span> นโยบาย
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner / Call to Action -->
+    <section class="bg-brand-main relative overflow-hidden py-12 md:py-16">
+        <div class="absolute inset-0 opacity-20">
+            <i class="fa-solid fa-angles-up absolute -top-10 -right-10 text-[150px] md:text-[300px] text-white transform rotate-12"></i>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6">อย่าปล่อยให้โอกาสหลุดมือ</h2>
+            <p class="text-lg md:text-xl text-blue-200 mb-6 md:mb-8 max-w-2xl mx-auto">
+                8 กุมภาพันธ์ 2569 คือวันที่อำนาจอยู่ในมือคุณ
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto px-4 sm:px-0">
+                <button class="w-full sm:w-auto bg-brand-accent text-white px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-accent transition shadow-lg">
+                    <i class="fa-solid fa-pen-to-square mr-2"></i> สมัครสมาชิก
+                </button>
+                <button class="w-full sm:w-auto bg-transparent border-2 border-white text-white px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-main transition shadow-lg">
+                    <i class="fa-solid fa-heart mr-2"></i> สนับสนุนทุน
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                        <i class="fa-solid fa-angles-up text-brand-accent text-2xl md:text-3xl"></i>
+                        <span class="font-bold text-xl md:text-2xl tracking-tighter">พรรคก้าวกระโดด</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        สถาบันทางการเมืองที่มุ่งมั่นสร้างความเปลี่ยนแปลงด้วยนโยบายที่ทำได้จริง
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-accent">ที่ทำการพรรค</h4>
+                    <p class="text-gray-400 text-sm leading-loose">
+                        123 อาคารอนาคตใหม่ ชั้น 8 <br>
+                        ถ.พหลโยธิน เขตจตุจักร <br>
+                        กรุงเทพฯ 10900
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-accent">ติดต่อเรา</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><i class="fa-solid fa-phone mr-2"></i> 02-999-9999</li>
+                        <li><i class="fa-solid fa-envelope mr-2"></i> contact@leap.or.th</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-accent">ติดตามเรา</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1877F2] transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1DA1F2] transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#FF0000] transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs md:text-sm text-gray-500">
+                <p>&copy; 2569 พรรคก้าวกระโดด. สงวนลิขสิทธิ์.</p>
+                <p class="mt-2 text-[10px] md:text-xs">ผลิตโดย พรรคก้าวกระโดด 123 ถ.พหลโยธิน กทม. จำนวน 1 ชุด</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Countdown Timer (Updated Logic)
+        const targetDate = new Date('February 8, 2026 08:00:00').getTime();
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+        }, 1000);
+
+        // Policy Database Generation - REALISTIC & RESPONSIVE
+        const categories = {
+            economy: { icon: 'fa-coins', color: 'text-blue-600', bg: 'bg-blue-50', name: 'ปากท้อง' },
+            bureaucracy: { icon: 'fa-building-columns', color: 'text-purple-600', bg: 'bg-purple-50', name: 'ราชการ' },
+            city: { icon: 'fa-city', color: 'text-green-600', bg: 'bg-green-50', name: 'เมือง/สิ่งแวดล้อม' },
+            health: { icon: 'fa-user-doctor', color: 'text-red-500', bg: 'bg-red-50', name: 'สุขภาพ' },
+            edu: { icon: 'fa-school', color: 'text-orange-500', bg: 'bg-orange-50', name: 'โรงเรียน' },
+            social: { icon: 'fa-hands-holding-circle', color: 'text-pink-500', bg: 'bg-pink-50', name: 'สังคม' }
+        };
+
+        function generateRealisticPolicies() {
+            let policies = [];
+            let id = 1;
+
+            const add = (cat, title, desc, tag = "") => {
+                policies.push({ id: id++, cat, title, desc, tag });
+            };
+
+            // Flagship Policies
+            add('economy', 'พักดอกเบี้ยบ้าน 3 ปี', 'ช่วยคนมีบ้านหลังแรก ราคาไม่เกิน 3 ล้าน');
+            add('economy', 'ล้างประวัติเครดิตบูโร', 'หนี้เสียช่วงโควิด จ่ายจบ ลบให้ทันที');
+            add('economy', 'สินเชื่อแผงลอย', 'กู้ 50,000 ไม่ต้องค้ำ ดอก 0.5% ต่อเดือน');
+            add('bureaucracy', 'ขอใบอนุญาต 7 วัน', 'ไม่อนุมัติใน 7 วัน ถือว่าผ่านทันที (Auto-approve)');
+            add('bureaucracy', 'เลิกสำเนาบัตร', 'ห้ามราชการขอสำเนา 100%');
+            add('health', 'หมอออนไลน์', 'เจ็บป่วยเล็กน้อย ปรึกษาผ่านแอป ส่งยาถึงบ้าน');
+            add('health', 'ฟอกไตทุกอำเภอ', 'ใกล้บ้าน ไม่ต้องเดินทางไกล');
+            add('edu', 'อาหารกลางวัน 35 บาท', 'เพิ่มงบ ปรับคุณภาพอาหารนักเรียน');
+            add('edu', 'คืนครูให้นักเรียน', 'จ้างธุรการทำเอกสารแทน ครูสอนเต็มที่');
+            add('social', 'เบี้ยคนชรา 3,000', 'ปรับขึ้นทันทีแบบขั้นบันได');
+
+            // Generator Loop for volume
+            const careers = ['ไรเดอร์', 'ฟรีแลนซ์', 'วินมอไซค์', 'พ่อค้าแม่ค้า', 'เกษตรกร'];
+            careers.forEach(c => {
+                 add('economy', `กองทุน ${c}`, `สินเชื่อฉุกเฉิน 10,000 บาท อนุมัติไวผ่านแอป`);
+                 add('economy', `ประกันสังคม ${c}`, `รัฐสมทบ 2 เท่า เจ็บป่วยรักษาได้จริง`);
+            });
+
+            const provinces = ['เชียงใหม่', 'ขอนแก่น', 'ภูเก็ต', 'ชลบุรี', 'โคราช'];
+            const issues = ['แก้รถติด', 'แก้น้ำท่วม', 'แก้ฝุ่น PM2.5', 'จัดการขยะ'];
+            provinces.forEach(p => {
+                issues.forEach(i => {
+                    add('city', `${p}: ${i}`, `งบประมาณลงท้องถิ่น แก้ปัญหา${i} ตรงจุด`);
+                });
+            });
+
+             const diseases = ['เบาหวาน', 'มะเร็ง', 'โรคไต', 'ความดัน'];
+             diseases.forEach(d => add('health', `รักษา${d}ฟรี`, `ยกระดับการรักษา${d} ไม่ต้องรอคิวนาน`));
+
+            // Fill up
+            const remaining = 300 - policies.length;
+            for(let i=0; i<remaining; i++) {
+                add('social', `ชุมชนปลอดภัย (จุดที่ ${i+1})`, `ติดไฟส่องสว่าง/กล้อง AI ในจุดเสี่ยง`);
+            }
+
+            return policies;
+        }
+
+        let allPolicies = generateRealisticPolicies();
+
+        function renderPolicies(filter = 'all', search = '') {
+            const container = document.getElementById('policyList');
+            const countLabel = document.getElementById('policyCount');
+            container.innerHTML = '';
+
+            const filtered = allPolicies.filter(p => {
+                const matchCat = filter === 'all' || p.cat === filter;
+                const matchSearch = p.title.toLowerCase().includes(search.toLowerCase()) || 
+                                  p.desc.toLowerCase().includes(search.toLowerCase());
+                return matchCat && matchSearch;
+            });
+
+            countLabel.innerText = filtered.length;
+            const policiesToRender = filtered.slice(0, 100);
+
+            policiesToRender.forEach(p => {
+                const catData = categories[p.cat];
+                const card = document.createElement('div');
+                card.className = 'bg-white p-3 md:p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col gap-1 md:gap-2 hover:border-brand-accent/30';
+                
+                let tagHTML = '';
+                if(p.id <= 10) { 
+                    tagHTML = '<span class="bg-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded-full font-bold w-fit">ทำทันที</span>';
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-2 mb-1 justify-between">
+                        <div class="flex items-center gap-1 md:gap-2">
+                            <div class="w-6 h-6 md:w-8 md:h-8 rounded-full ${catData.bg} ${catData.color} flex items-center justify-center text-xs md:text-sm">
+                                <i class="fa-solid ${catData.icon}"></i>
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase text-gray-500 truncate max-w-[80px] md:max-w-none">${catData.name}</span>
+                        </div>
+                        <span class="text-[10px] text-gray-300 font-mono">#${p.id}</span>
+                    </div>
+                    <div class="mb-0.5">${tagHTML}</div>
+                    <h4 class="font-bold text-gray-800 text-base md:text-lg leading-tight truncate">${p.title}</h4>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1 line-clamp-2">${p.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-8 text-gray-400 text-sm">ไม่พบนโยบาย</div>`;
+            }
+        }
+
+        // Event Listeners & Init
+        document.getElementById('policySearch').addEventListener('input', (e) => renderPolicies(document.getElementById('policyFilter').value, e.target.value));
+        document.getElementById('policyFilter').addEventListener('change', (e) => renderPolicies(e.target.value, document.getElementById('policySearch').value));
+
+        const filterSelect = document.getElementById('policyFilter');
+        filterSelect.innerHTML = '<option value="all">ทุกหมวดหมู่</option>';
+        Object.entries(categories).forEach(([key, value]) => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.innerText = value.name;
+            filterSelect.appendChild(option);
+        });
+
+        renderPolicies();
+    </script>
+</body>
+</html>        background-size: cover;
         background-position: center;
     }
     .text-shadow {
